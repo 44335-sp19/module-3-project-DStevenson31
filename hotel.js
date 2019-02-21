@@ -27,13 +27,14 @@ function offerExpires(dateObject) {
         case 13: weekday = "Saturday"; break;
     }
     var date = dateObject.getDate() + 7;
-    var month = dateObject.getMonth(); 
-    //DOES NOT WORK EVERif (date <= 7)? month += 1;
+    var month = dateObject.getMonth();
+    var flag = false;
     switch(month) {
         case 0: 
             if(date > 31){
                 date = (date - 31);
                 month = "February";
+                flag = true;
             }
             else{
                 month = "January";
@@ -43,6 +44,7 @@ function offerExpires(dateObject) {
             if(date > 28){
                 date = (date - 28);
                 month = "March";
+                flag = true;
             }
             else{
                 month = "February";
@@ -52,6 +54,7 @@ function offerExpires(dateObject) {
             if(date > 31){
                 date = (date - 31);
                 month = "April";
+                flag = true;
             }
             else{
                 month = "March";
@@ -61,6 +64,7 @@ function offerExpires(dateObject) {
             if(date > 30){
                 date = (date - 30);
                 month = "May";
+                flag = true;
             }
             else{
                 month = "April";
@@ -70,6 +74,7 @@ function offerExpires(dateObject) {
             if(date > 31){
                 date = (date - 31);
                 month = "June";
+                flag = true;
             }
             else{
                 month = "May";
@@ -79,6 +84,7 @@ function offerExpires(dateObject) {
             if(date > 30){
                 date = (date - 30);
                 month = "July";
+                flag = true;
             }
             else{
                 month = "June";
@@ -88,6 +94,7 @@ function offerExpires(dateObject) {
             if(date > 31){
                 date = (date - 31);
                 month = "August";
+                flag = true;
             }
             else{
                 month = "July";
@@ -97,6 +104,7 @@ function offerExpires(dateObject) {
             if(date > 31){
                 date = (date - 31);
                 month = "September";
+                flag = true;
             }
             else{
                 month = "August";
@@ -106,6 +114,7 @@ function offerExpires(dateObject) {
             if(date > 30){
                 date = (date - 30);
                 month = "October";
+                flag = true;
             }
             else{
                 month = "September";
@@ -115,6 +124,7 @@ function offerExpires(dateObject) {
             if(date > 31){
                 date = (date - 31);
                 month = "November";
+                flag = true;
             }
             else{
                 month = "October";
@@ -124,6 +134,7 @@ function offerExpires(dateObject) {
             if(date > 30){
                 date = (date - 30);
                 month = "December";
+                flag = true;
             }
             else{
                 month = "November";
@@ -133,18 +144,15 @@ function offerExpires(dateObject) {
             if(date > 31){
                 date = (date - 31);
                 month = "January";
+                flag = true;
             }
             else{
                 month = "December";
             }
             break;
     }
-    var year = dateObject.getFullYear(); 
-    //DOES NOT WORK EVERif (date <= 7 && month == 11)? year += 1;
-    if(date <= 7 && month == 11) {
-        year += 1;
-    }
-    return "OFFER EXPIRES NEXT " + "&quot;" + weekday + "&quot; (" + date + " " + month + " " + year +")";
+    var year = (month == 1 && flag == true)? dateObject.getFullYear() + 1: dateObject.getFullYear(); 
+    return "OFFER EXPIRES NEXT " + weekday + " (" + date + " " + month + " " + year +")";
 }
 
 //PART THREE: CALL THE FUNCTIONS AND WRITE INFO TO WEBPAGE
